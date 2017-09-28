@@ -1,4 +1,4 @@
-package com.avinash_ksworks.jci.a6am.helper;
+package com.smartamigos.jci.a6am.helper;
 
 
 import java.util.Timer;

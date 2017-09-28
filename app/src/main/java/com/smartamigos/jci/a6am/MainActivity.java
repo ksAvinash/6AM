@@ -1,4 +1,4 @@
-package com.avinash_ksworks.jci.a6am;
+package com.smartamigos.jci.a6am;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
