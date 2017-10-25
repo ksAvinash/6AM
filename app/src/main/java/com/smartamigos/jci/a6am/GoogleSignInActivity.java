@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -23,7 +24,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
  * Created by charank on 28-09-2017.
  */
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class GoogleSignInActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private SignInButton SignIn;
     private GoogleApiClient googleApiClient;
@@ -33,14 +34,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_layout);
+        setContentView(R.layout.google_signin_layout);
         SignIn = (SignInButton) findViewById(R.id.googleSignInButton);
         SignIn.setOnClickListener(this);
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).build();
-        EmailTextField = (TextView) findViewById(R.id.EmailTextField);
-        NameTextField = (TextView) findViewById(R.id.NameTextField);
-        UserImageField = (ImageView) findViewById(R.id.UserImageField);
+//        EmailTextField = (TextView) findViewById(R.id.EmailTextField);
+//        NameTextField = (TextView) findViewById(R.id.NameTextField);
+//        UserImageField = (ImageView) findViewById(R.id.UserImageField);
     }
 
     @Override
@@ -67,16 +68,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Log.i("USername :: ",name);
             Log.i("EmailID :: ",email);
             Log.i("ImageUri ::",userPhoto.toString());
-            NameTextField.setText(name);
-            EmailTextField.setText(email);
 
-//            try {
-//                Bitmap userBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),userPhoto);
-//                UserImageField.setImageBitmap(userBitmap);
-//                Glide.with(this).load(userPhoto).into(UserImageField);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+            Intent postGSignInIntent = new Intent(this,AppSignUp.class);
+            postGSignInIntent.putExtra("userName",name);
+            postGSignInIntent.putExtra("userEmail",email);
+            postGSignInIntent.putExtra("userProfileImage",userPhoto.toString());
+            startActivity(postGSignInIntent);
+//            NameTextField.setText(name);
+//            EmailTextField.setText(email);
+
+            try {
+//                Glide.with(this).load(userPhoto).into(UserImageField);   //setting image using Glide
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             Toast.makeText(getApplicationContext(),"UserNAme :: "+name+"\nEmailID :: "+email,Toast.LENGTH_LONG);
         }
     }
