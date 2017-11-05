@@ -8,9 +8,9 @@
     android:alpha="0.9"
     android:orientation="vertical"
     android:weightSum="11.3"
-    tools:context="com.smartamigos.jci.a6am.AppSignUp">
+    tools:context="com.sixamdev.jci.a6am.AppSignUp">
 
-    <com.smartamigos.jci.a6am.CustomTextView
+    <com.sixamdev.jci.a6am.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
@@ -31,12 +31,12 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:drawablePadding="5dp"
-        android:src="@drawable/signup_female"
+        android:src="@drawable/myavatar3"
         app:civ_border_color="@color/colorWhite"
         app:civ_border_width="3dp"
         android:layout_weight="1"/>
 
-    <com.smartamigos.jci.a6am.CustomEditText
+    <com.sixamdev.jci.a6am.CustomEditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/userNameInput"
@@ -49,10 +49,12 @@
         android:textColorHint="#CFD8DC"
         android:layout_weight="1"/>
 
-    <com.smartamigos.jci.a6am.CustomEditText
+    <com.sixamdev.jci.a6am.CustomEditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/userAgeInput"
+        android:inputType="number"
+        android:maxLength="2"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:backgroundTint="#CFD8DC"
@@ -70,7 +72,7 @@
         android:layout_weight="1.5"
         android:gravity="center"
         android:orientation="horizontal">
-        <!--<com.smartamigos.signuppage.CustomTextView-->
+        <!--<sixamdevgnuppage.CustomTextView-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:textSize="28sp"-->
@@ -97,7 +99,7 @@
             app:civ_border_width="2dp" />
     </LinearLayout>
 
-    <com.smartamigos.jci.a6am.CustomEditText
+    <com.sixamdev.jci.a6am.CustomEditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/userLocationInput"
@@ -110,10 +112,11 @@
         android:textColorHint="#CFD8DC"
         android:layout_weight="1"/>
 
-    <com.smartamigos.jci.a6am.CustomEditText
+    <com.sixamdev.jci.a6am.CustomEditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/userPhoneInput"
+        android:inputType="number"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:backgroundTint="#CFD8DC"

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.smartamigos.jci.a6am"
+        applicationId "com.sixamdev.jci.a6am"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

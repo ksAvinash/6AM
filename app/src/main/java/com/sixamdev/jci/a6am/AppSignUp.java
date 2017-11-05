@@ -1,4 +1,4 @@
-package com.smartamigos.jci.a6am;
+package com.sixamdev.jci.a6am;
 
 import android.graphics.Color;
 import android.net.Uri;
@@ -11,10 +11,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 
 import org.json.JSONObject;
@@ -24,7 +22,6 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -143,11 +140,9 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
                                     os.flush();
 
                                     BufferedReader serverAnswer = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                                    String line;
-                                    while ((line = serverAnswer.readLine()) != null) {
-
-                                        Log.i("LINE: ", line); //<--If any response from server
-                                        //use it as you need, if server send something back you will get it here.
+                                    String serverResponse;
+                                    while ((serverResponse = serverAnswer.readLine()) != null) {
+                                        Log.i("serverResponse: ", serverResponse); //response from server
                                     }
 
                                     os.close();
@@ -155,9 +150,11 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
                                     Log.i("STATUS", String.valueOf(conn.getResponseCode()));
                                     Log.i("MSG", conn.getResponseMessage());
 
-                                    Toast.makeText(getApplicationContext(),line,Toast.LENGTH_LONG).show();
+//                                    Toast.makeText(getApplicationContext(),serverResponse,Toast.LENGTH_LONG).show();
 
                                     conn.disconnect();
+
+
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }

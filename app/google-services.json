@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "18433584802",
-    "project_id": "sixam-181305"
+    "project_number": "577192804485",
+    "project_id": "firebase-sixam"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:18433584802:android:1f39adac74d1fb47",
+        "mobilesdk_app_id": "1:577192804485:android:e06b78de4af46647",
         "android_client_info": {
-          "package_name": "com.smartamigos.jci.a6am"
+          "package_name": "com.sixamdev.jci.a6am"
         }
       },
       "oauth_client": [
         {
-          "client_id": "18433584802-t51emgbaoomkbj2ipnt94a67nq6od2pr.apps.googleusercontent.com",
+          "client_id": "577192804485-k5lco9424sjqh5sjja4sml98l03otibj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.smartamigos.jci.a6am",
+            "package_name": "com.sixamdev.jci.a6am",
             "certificate_hash": "43cbf2f7c9ca50f2cad010876f65168baa04f5e6"
           }
         },
         {
-          "client_id": "18433584802-q0bl5clfimaoakum3dc5ecroqik5edbj.apps.googleusercontent.com",
+          "client_id": "577192804485-vvfba6acb70s4uei3svst2h13n5nku4f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAGvOvUR763HIbfUhtvdm-EmcsgaVM0Ln0"
+          "current_key": "AIzaSyDSo68Zd-d8GNGHoZDd0p4gBlwt1I5zzTw"
         }
       ],
       "services": {

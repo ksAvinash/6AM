@@ -1,4 +1,4 @@
-package com.smartamigos.jci.a6am;
+package com.sixamdev.jci.a6am;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
