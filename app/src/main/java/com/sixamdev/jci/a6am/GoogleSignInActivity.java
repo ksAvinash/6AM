@@ -35,7 +35,7 @@ public class GoogleSignInActivity extends AppCompatActivity implements View.OnCl
         getSupportActionBar().hide();
         setContentView(R.layout.google_signin_layout);
 
-        sharedPreferences = this.getSharedPreferences(signInPreferences, MODE_WORLD_READABLE);
+        sharedPreferences = this.getSharedPreferences(signInPreferences, MODE_PRIVATE);
         boolean isUserSignedUp = sharedPreferences.getBoolean("signedup", false);
 
         Log.i("isUserSignedUp : ", String.valueOf(isUserSignedUp));

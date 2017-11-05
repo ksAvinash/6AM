@@ -1,5 +1,6 @@
 package com.sixamdev.jci.a6am.firebase;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -19,6 +20,8 @@ import java.net.URL;
 
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
+    public SharedPreferences sharedPreferences;
+    private final String signInPreferences = "6am_users";
 
     @Override
     public void onTokenRefresh() {
@@ -35,7 +38,8 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     private void sendRegistrationToServer(String token) {
         // TODO: Implement this method to send token to your app server.
-
+        sharedPreferences = this.getSharedPreferences(signInPreferences, MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", "");
 
 
         try{
@@ -49,7 +53,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
 
             JSONObject jsonParam = new JSONObject();
-            jsonParam.put("email", "hello@123.com");
+            jsonParam.put("email", email);
             jsonParam.put("fb_instance_id",token);
 
 
