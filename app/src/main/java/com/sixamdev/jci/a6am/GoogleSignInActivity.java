@@ -24,7 +24,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class GoogleSignInActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private static final int REQ_CODE = 9001;
-    private final String signInPreferences = "sixAmSignIn";
+    private final String signInPreferences = "6am_users";
     public SharedPreferences sharedPreferences;
     private SignInButton SignIn;
     private GoogleApiClient googleApiClient;

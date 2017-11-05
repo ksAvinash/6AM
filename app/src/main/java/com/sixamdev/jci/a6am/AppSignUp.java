@@ -30,7 +30,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AppSignUp extends AppCompatActivity implements View.OnClickListener {
     private static GoogleSignInResult googleSignInResult;
-    private final String signInPreferences = "sixAmSignIn";
+    private final String signInPreferences = "6am_users";
     public SharedPreferences sharedPreferences;
     private EditText userNameInput;
     private EditText userAgeInput;
@@ -174,12 +174,12 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
                                         SharedPreferences.Editor spEditor = sharedPreferences.edit();
 
                                         spEditor.putBoolean("signedup", true);
-                                        spEditor.putString("userEmail", googleEmail);
-                                        spEditor.putString("userName", googleName);
-                                        spEditor.putString("userAge", userAge);
-                                        spEditor.putString("userGender", genderInput);
-                                        spEditor.putString("userPhone", userPhoneNumber);
-                                        spEditor.putString("userLocation", userLocation);
+                                        spEditor.putString("email", googleEmail);
+                                        spEditor.putString("name", googleName);
+                                        spEditor.putString("age", userAge);
+                                        spEditor.putString("gender", genderInput);
+                                        spEditor.putString("phoneno", userPhoneNumber);
+                                        spEditor.putString("place", userLocation);
                                         spEditor.putString("avatarid", avatarID);
                                         spEditor.commit();
 
