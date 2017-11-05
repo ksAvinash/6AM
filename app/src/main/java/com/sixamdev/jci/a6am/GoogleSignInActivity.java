@@ -1,10 +1,12 @@
 package com.sixamdev.jci.a6am;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.auth.api.Auth;
@@ -21,15 +23,27 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class GoogleSignInActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
+    private static final int REQ_CODE = 9001;
+    private final String signInPreferences = "sixAmSignIn";
+    public SharedPreferences sharedPreferences;
     private SignInButton SignIn;
     private GoogleApiClient googleApiClient;
-    private static final int REQ_CODE = 9001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.google_signin_layout);
+
+        sharedPreferences = this.getSharedPreferences(signInPreferences, MODE_WORLD_READABLE);
+        boolean isUserSignedUp = sharedPreferences.getBoolean("signedup", false);
+
+        Log.i("isUserSignedUp : ", String.valueOf(isUserSignedUp));
+
+        if (isUserSignedUp) {
+            Intent mainActivityIntent = new Intent(this, MainActivity.class);
+            startActivity(mainActivityIntent);
+        }
 
         SignIn = (SignInButton) findViewById(R.id.googleSignInButton);
         SignIn.setOnClickListener(this);

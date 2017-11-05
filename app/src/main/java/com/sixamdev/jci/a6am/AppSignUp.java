@@ -1,5 +1,8 @@
 package com.sixamdev.jci.a6am;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +30,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AppSignUp extends AppCompatActivity implements View.OnClickListener {
     private static GoogleSignInResult googleSignInResult;
+    private final String signInPreferences = "sixAmSignIn";
+    public SharedPreferences sharedPreferences;
     private EditText userNameInput;
     private EditText userAgeInput;
     private EditText userLocationInput;
@@ -34,15 +39,15 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
     private ImageView avatarImageView;
     private Button signUpButton;
     private boolean isFilled = true;
-    private CircleImageView genderMale,genderFemale;
-    private  String googleEmail,avatarID,genderInput=null;
+    private CircleImageView genderMale, genderFemale;
+    private String googleEmail, googleName, avatarID, userAge, userLocation, userPhoneNumber, genderInput = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         final Bundle gSignInData = getIntent().getExtras();
-        String googleName = gSignInData.getString("userName");
+        googleName = gSignInData.getString("userName");
         googleEmail = gSignInData.getString("userEmail");
         getSupportActionBar().hide();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -57,6 +62,7 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
         signUpButton = (Button) findViewById(R.id.signUpButton);
         genderMale = (CircleImageView) findViewById(R.id.genderMale);
         genderFemale = (CircleImageView) findViewById(R.id.genderFemale);
+
 
         avatarID = gSignInData.getString("userProfileImage");
 
@@ -73,20 +79,20 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.genderMale :
+        switch (v.getId()) {
+            case R.id.genderMale:
                 genderMale.setBorderColor(Color.GREEN);
                 genderFemale.setBorderColor(Color.TRANSPARENT);
                 genderFemale.setAlpha(0);
                 genderInput = "male";
                 break;
-            case R.id.genderFemale :
+            case R.id.genderFemale:
                 genderFemale.setBorderColor(Color.GREEN);
                 genderMale.setBorderColor(Color.TRANSPARENT);
                 genderMale.setAlpha(0);
                 genderInput = "female";
                 break;
-            case R.id.signUpButton :
+            case R.id.signUpButton:
 
                 if (!TextUtils.isEmpty(googleEmail)) {
 //                    if (TextUtils.isEmpty(userNameInput.getText())) {
@@ -110,7 +116,7 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
 //                        isFilled = false;
 //                    }
                     if (isFilled) {
-                        Log.i("","Inside calling post");
+                        Log.i("", "Inside calling post");
                         Thread thread = new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -125,12 +131,16 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
 
                                     JSONObject jsonParam = new JSONObject();
                                     jsonParam.put("email", googleEmail);
-                                    jsonParam.put("name",userNameInput.getText());
-                                    jsonParam.put("age",userAgeInput.getText());
-                                    jsonParam.put("gender",genderInput);
-                                    jsonParam.put("phoneno",userPhoneInput.getText());
-                                    jsonParam.put("place",userLocationInput.getText());
-                                    jsonParam.put("avatarid",avatarID);
+                                    jsonParam.put("name", userNameInput.getText());
+                                    jsonParam.put("age", userAgeInput.getText());
+                                    jsonParam.put("gender", genderInput);
+                                    jsonParam.put("phoneno", userPhoneInput.getText());
+                                    jsonParam.put("place", userLocationInput.getText());
+                                    jsonParam.put("avatarid", avatarID);
+
+                                    userAge = userAgeInput.getText().toString().trim();
+                                    userLocation = userLocationInput.getText().toString().trim();
+                                    userPhoneNumber = userPhoneInput.getText().toString().trim();
 
                                     Log.i("JSON", jsonParam.toString());
                                     DataOutputStream os = new DataOutputStream(conn.getOutputStream());
@@ -140,20 +150,42 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
                                     os.flush();
 
                                     BufferedReader serverAnswer = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                                    String serverResponse;
-                                    while ((serverResponse = serverAnswer.readLine()) != null) {
-                                        Log.i("serverResponse: ", serverResponse); //response from server
-                                    }
+                                    String result;
+
+                                    result = serverAnswer.readLine();
 
                                     os.close();
 
                                     Log.i("STATUS", String.valueOf(conn.getResponseCode()));
                                     Log.i("MSG", conn.getResponseMessage());
 
-//                                    Toast.makeText(getApplicationContext(),serverResponse,Toast.LENGTH_LONG).show();
 
                                     conn.disconnect();
 
+                                    JSONObject responseJSON = new JSONObject(result);
+                                    String responseStatus = responseJSON.getString("signup");
+
+                                    Log.i("responseStatus : ", responseStatus);
+
+                                    if (responseStatus.equals("PASS")) {
+                                        //set the signedin shared preference to true
+                                        sharedPreferences = getSharedPreferences(signInPreferences, Context.MODE_PRIVATE);
+
+                                        SharedPreferences.Editor spEditor = sharedPreferences.edit();
+
+                                        spEditor.putBoolean("signedup", true);
+                                        spEditor.putString("userEmail", googleEmail);
+                                        spEditor.putString("userName", googleName);
+                                        spEditor.putString("userAge", userAge);
+                                        spEditor.putString("userGender", genderInput);
+                                        spEditor.putString("userPhone", userPhoneNumber);
+                                        spEditor.putString("userLocation", userLocation);
+                                        spEditor.putString("avatarid", avatarID);
+                                        spEditor.commit();
+
+                                        Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(mainActivityIntent);
+                                    }
 
                                 } catch (Exception e) {
                                     e.printStackTrace();
