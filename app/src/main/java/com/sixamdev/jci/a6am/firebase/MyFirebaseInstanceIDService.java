@@ -1,5 +1,6 @@
 package com.sixamdev.jci.a6am.firebase;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
@@ -21,7 +22,8 @@ import java.net.URL;
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     public SharedPreferences sharedPreferences;
-    private final String signInPreferences = "6am_users";
+    public static String signInPreferences = "6am_users";
+
 
     @Override
     public void onTokenRefresh() {
@@ -32,17 +34,18 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
-        sendRegistrationToServer(refreshedToken);
+//        sendRegistrationToServer(refreshedToken);
     }
 
 
 
 
 
-    public void sendRegistrationToServer(String token) {
+    public void sendRegistrationToServer(Context context,String token) {
+
         // TODO: Implement this method to send token to your app server.
-        sharedPreferences = this.getSharedPreferences(signInPreferences, MODE_PRIVATE);
-        String email = sharedPreferences.getString("email", "");
+        sharedPreferences = context.getSharedPreferences(signInPreferences, MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", null);
         if(email != null){
             try{
                 URL url = new URL("https://zra7dwvb6b.execute-api.ap-south-1.amazonaws.com/prod/update-fb-instance-id");

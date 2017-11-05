@@ -190,7 +190,7 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
 
                                         String token = FirebaseInstanceId.getInstance().getToken();
                                         MyFirebaseInstanceIDService firebaseInstanceIDService = new MyFirebaseInstanceIDService();
-                                        firebaseInstanceIDService.sendRegistrationToServer(token);
+                                        firebaseInstanceIDService.sendRegistrationToServer(getApplicationContext(),token);
 
                                         Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(mainActivityIntent);
