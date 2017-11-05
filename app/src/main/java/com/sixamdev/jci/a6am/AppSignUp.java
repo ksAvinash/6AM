@@ -17,6 +17,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.sixamdev.jci.a6am.firebase.MyFirebaseInstanceIDService;
 
 import org.json.JSONObject;
 
@@ -27,6 +29,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+
+
 
 public class AppSignUp extends AppCompatActivity implements View.OnClickListener {
     private static GoogleSignInResult googleSignInResult;
@@ -182,6 +187,10 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
                                         spEditor.putString("place", userLocation);
                                         spEditor.putString("avatarid", avatarID);
                                         spEditor.commit();
+
+                                        String token = FirebaseInstanceId.getInstance().getToken();
+                                        MyFirebaseInstanceIDService firebaseInstanceIDService = new MyFirebaseInstanceIDService();
+                                        firebaseInstanceIDService.sendRegistrationToServer(token);
 
                                         Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(mainActivityIntent);
