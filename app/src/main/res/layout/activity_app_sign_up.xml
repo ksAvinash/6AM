@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
     android:alpha="0.9"
+    android:background="@drawable/app_background"
     android:orientation="vertical"
     android:weightSum="11.3"
     tools:context="com.sixamdev.jci.a6am.AppSignUp">
@@ -13,56 +13,56 @@
     <com.sixamdev.jci.a6am.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1.8"
         android:gravity="center"
         android:text="6AM"
         android:textColor="@color/colorWhite"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_weight="1.8"/>
+        android:textStyle="bold" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatarImageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
+        android:layout_weight="1"
         android:drawablePadding="5dp"
         android:src="@drawable/myavatar3"
         app:civ_border_color="@color/colorWhite"
-        app:civ_border_width="3dp"
-        android:layout_weight="1"/>
+        app:civ_border_width="3dp" />
 
     <com.sixamdev.jci.a6am.CustomEditText
+        android:id="@+id/userNameInput"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/userNameInput"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_weight="1"
         android:backgroundTint="#CFD8DC"
         android:drawableLeft="@drawable/signup_name"
         android:drawablePadding="12dp"
         android:hint="Name"
-        android:textColorHint="#CFD8DC"
-        android:layout_weight="1"/>
+        android:textColorHint="#CFD8DC" />
 
     <com.sixamdev.jci.a6am.CustomEditText
+        android:id="@+id/userAgeInput"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/userAgeInput"
-        android:inputType="number"
-        android:maxLength="2"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_weight="1"
         android:backgroundTint="#CFD8DC"
         android:drawableLeft="@drawable/signup_age"
         android:drawablePadding="12dp"
         android:hint="Age"
-        android:textColorHint="#CFD8DC"
-        android:layout_weight="1"/>
+        android:inputType="number"
+        android:maxLength="2"
+        android:textColorHint="#CFD8DC" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -99,24 +99,29 @@
             app:civ_border_width="2dp" />
     </LinearLayout>
 
-    <com.sixamdev.jci.a6am.CustomEditText
+    <android.support.v4.widget.Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="0.3" />
+
+    <com.sixamdev.jci.a6am.CustomEditText
         android:id="@+id/userPhoneInput"
-        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_weight="1"
         android:backgroundTint="#CFD8DC"
         android:drawableLeft="@drawable/signup_phone"
         android:drawablePadding="12dp"
         android:hint="Phone Number"
-        android:textColorHint="#CFD8DC"
-        android:layout_weight="1"/>
+        android:inputType="number"
+        android:textColorHint="#CFD8DC" />
 
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/signUpButton"
@@ -127,7 +132,7 @@
         android:background="@drawable/rectangle"
         android:text="SIGN UP"
         android:textColor="#200001"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
