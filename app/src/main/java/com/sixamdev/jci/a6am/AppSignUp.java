@@ -61,7 +61,7 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
 
         userNameInput = (EditText) findViewById(R.id.userNameInput);
         userAgeInput = (EditText) findViewById(R.id.userAgeInput);
-        userLocationInput = (EditText) findViewById(R.id.userLocationInput);
+//        userLocationInput = (EditText) findViewById(R.id.userLocationInput);
         userPhoneInput = (EditText) findViewById(R.id.userPhoneInput);
         avatarImageView = (ImageView) findViewById(R.id.avatarImageView);
         signUpButton = (Button) findViewById(R.id.signUpButton);
@@ -140,12 +140,14 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
                                     jsonParam.put("age", userAgeInput.getText());
                                     jsonParam.put("gender", genderInput);
                                     jsonParam.put("phoneno", userPhoneInput.getText());
-                                    jsonParam.put("place", userLocationInput.getText());
+//                                    jsonParam.put("place", userLocationInput.getText());
+                                    jsonParam.put("latitude","12.3478");
+                                    jsonParam.put("longitude","36.7896");
                                     jsonParam.put("avatarid", avatarID);
 
                                     userAge = userAgeInput.getText().toString().trim();
-                                    userLocation = userLocationInput.getText().toString().trim();
-                                    userPhoneNumber = userPhoneInput.getText().toString().trim();
+//                                    userLocation = userLocationInput.getText().toString().trim();
+//                                    userPhoneNumber = userPhoneInput.getText().toString().trim();
 
                                     Log.i("JSON", jsonParam.toString());
                                     DataOutputStream os = new DataOutputStream(conn.getOutputStream());
@@ -164,6 +166,7 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
                                     Log.i("STATUS", String.valueOf(conn.getResponseCode()));
                                     Log.i("MSG", conn.getResponseMessage());
 
+                                    Log.i("Server response : ",result);
 
                                     conn.disconnect();
 
@@ -184,7 +187,9 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
                                         spEditor.putString("age", userAge);
                                         spEditor.putString("gender", genderInput);
                                         spEditor.putString("phoneno", userPhoneNumber);
-                                        spEditor.putString("place", userLocation);
+//                                        spEditor.putString("place", userLocation);
+                                        spEditor.putString("latitude","12.3124");
+                                        spEditor.putString("longitude","36.6789");
                                         spEditor.putString("avatarid", avatarID);
                                         spEditor.commit();
 
