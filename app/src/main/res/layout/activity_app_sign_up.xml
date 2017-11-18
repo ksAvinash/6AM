@@ -44,7 +44,7 @@
         android:layout_marginRight="40dp"
         android:layout_weight="1"
         android:backgroundTint="#CFD8DC"
-        android:drawableLeft="@drawable/signup_name"
+        android:drawableLeft="@drawable/signup_person"
         android:drawablePadding="12dp"
         android:hint="Name"
         android:textColorHint="#CFD8DC" />
@@ -112,7 +112,7 @@
         android:layout_marginRight="40dp"
         android:layout_weight="1"
         android:backgroundTint="#CFD8DC"
-        android:drawableLeft="@drawable/signup_phone"
+        android:drawableLeft="@drawable/signup_phone1"
         android:drawablePadding="12dp"
         android:hint="Phone Number"
         android:inputType="number"

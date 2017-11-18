@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -69,13 +70,14 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
         genderFemale = (CircleImageView) findViewById(R.id.genderFemale);
 
 
-        avatarID = gSignInData.getString("userProfileImage");
+//        avatarID = gSignInData.getString("userProfileImage");
+        avatarID = "myavatar1";
 
         userNameInput.setText(googleName);
-        if (gSignInData.getString("") != null) {
-            Uri googlePhoto = Uri.parse(gSignInData.getString("userProfileImage"));
-            Glide.with(this).load(googlePhoto).into(avatarImageView);
-        }
+//        if (gSignInData.getString("userProfileImage") != null) {
+//            Uri googlePhoto = Uri.parse(gSignInData.getString("userProfileImage"));
+//            Glide.with(this).load(googlePhoto).into(avatarImageView);
+//        }
 
         genderMale.setOnClickListener(this);
         genderFemale.setOnClickListener(this);
@@ -171,9 +173,15 @@ public class AppSignUp extends AppCompatActivity implements View.OnClickListener
                                     conn.disconnect();
 
                                     JSONObject responseJSON = new JSONObject(result);
-                                    String responseStatus = responseJSON.getString("signup");
+                                    final String responseStatus = responseJSON.getString("signup");
 
                                     Log.i("responseStatus : ", responseStatus);
+
+                                    AppSignUp.this.runOnUiThread(new Runnable() {
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), responseStatus, Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
 
                                     if (responseStatus.equals("PASS")) {
                                         //set the signedin shared preference to true

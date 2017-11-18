@@ -69,14 +69,14 @@ public class GoogleSignInActivity extends AppCompatActivity implements View.OnCl
     private void handleResult(GoogleSignInResult signInResult) {
         if (signInResult.isSuccess()) {
             GoogleSignInAccount googleSignInAccount = signInResult.getSignInAccount();
-            Uri userPhoto = googleSignInAccount.getPhotoUrl();
+//            Uri userPhoto = googleSignInAccount.getPhotoUrl();
             String name = googleSignInAccount.getDisplayName();
             String email = googleSignInAccount.getEmail();
 
             Intent postGSignInIntent = new Intent(this, AppSignUp.class);
             postGSignInIntent.putExtra("userName", name);
             postGSignInIntent.putExtra("userEmail", email);
-            postGSignInIntent.putExtra("userProfileImage", userPhoto.toString());
+//            postGSignInIntent.putExtra("userProfileImage", userPhoto.toString());
             startActivity(postGSignInIntent);
 
         }
